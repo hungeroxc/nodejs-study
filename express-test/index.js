@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 // 错误处理
 app.use((err, req, res, next) => {
     console.log(err)
-    res.end(err)
+    res.json(err)
 })
 
 app.listen(3000)
