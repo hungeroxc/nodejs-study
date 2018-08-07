@@ -51,7 +51,7 @@ app.post('/user', mw3)
 // 错误处理
 app.use((err, req, res, next) => {
     console.log(err)
-    res.json(err)
+    res.end(err)
 })
 
 app.listen(3000)
