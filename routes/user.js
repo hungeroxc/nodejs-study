@@ -3,12 +3,19 @@ const router = express.Router()
 
 const User = require('./../models/in_memo/user')
 
-router.get('', (req, res) => {
-    const {firstname, lastname, age} = req.query
-    console.log(firstname)
-    const u = new User(firstname, lastname, age)
-    res.locals.user = u
+const UserService = require('../services//user_service')
+
+router.get('/', (req, res) => {
+    const users = UserService.getAllUsers()
+    res.locals.users = users
     res.render('user')
 })
+
+router.post('/', (req, res) => {
+    const {firstname, lastname, age} = req.body
+    const u = UserService.insertNewUser(firstname, lastname, age)
+    res.json(u)
+})
+
 
 module.exports = router
