@@ -12,6 +12,7 @@ class Subscription {
     static insert(userId, url) {
         const sub = new Subscription(userId, url)
         Subscription.subscriptions.push(sub)
+        return sub
     }
 
     static findByUserId() {
@@ -21,4 +22,4 @@ class Subscription {
 
 Subscription.subscriptions = []
 
-module.exports = Subscript
+module.exports = Subscription

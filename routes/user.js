@@ -25,8 +25,15 @@ router.get('/:userId', (req, res) => {
 })
 
 // 用户订阅相关
-router.post('/:userId/subscription', (req, res) => {
-    
+router.post('/:userId/subscription', (req, res, next) => {
+    try {
+        const sub = UserService.createSubscription(Number(req.params.userId), req.body.url)
+        console.log(sub)
+        res.json(sub)
+    } catch (e) {
+        next(e)
+    }
+
 })
 
 

@@ -13,7 +13,7 @@ module.exports.getUserById = function(userId) {
     return User.getOneById(userId)
 }
 
-module.exports.createSubscription = function(userId) {
+module.exports.createSubscription = function(userId, url) {
     const user = User.getOneById(userId)
     if(!user) throw Error('没有找到该用户')
     const sub = Subscription.insert(userId, url)
