@@ -18,12 +18,15 @@ router.post('/', (req, res) => {
     res.json(u)
 })
 
-// 用户描述相关
 router.get('/:userId', (req, res) => {
     const user = UserService.getUserById(Number(req.params.userId))
     res.locals.user = user
-    console.log(user)
     res.render('des')
+})
+
+// 用户订阅相关
+router.post('/:userId/subscription', (req, res) => {
+    
 })
 
 
