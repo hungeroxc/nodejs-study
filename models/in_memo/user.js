@@ -5,6 +5,8 @@ class User {
         this.firstname = firstname
         this.age = age
         this.lastname = lastname
+        User.id += 1
+        this.id = User.id
     }
     get name() {
         return `${this.firstname} ${this.lastname}`
@@ -20,6 +22,10 @@ class User {
         return User.users.find(u => u.firstname === firstname && u.lastname === lastname)
     }
 
+    static getOneById(userId) {
+        return User.users.find(u => u.id === userId)
+    }
+
     static list(query) {
         return User.users
     }
@@ -28,6 +34,8 @@ class User {
         return users
     }
 }
+
+User.id = 0
 
 
 module.exports = User
