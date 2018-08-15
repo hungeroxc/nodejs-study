@@ -1,8 +1,9 @@
+// 引入mongoose
 const mongoose = require('mongoose')
-
+// 替换promise
 mongoose.Promise = Promise
-
-const uri = `mongodb://localhost:27017/test`
+// 使用mongodb协议进行本地连接
+const uri = `mongodb://localhost:27017/mongodb`
 
 const Schema = mongoose.Schema
 
@@ -13,24 +14,23 @@ const ObjectId = Schema.Types.ObjectId
 const connection = mongoose.connect(uri, {useNewUrlParser: true})
 const db = mongoose.connection
 
-// const UserSchema = new Schema({
-//     name: {type: String, required: true, unique: true},
-//     type: {type: Number, max: 188, min: 0}
-// })
 
-// const userModel = mongoose.model('user', UserSchema)
+// 编写users表的schema
+const UserSchema = new Schema({
+    name: {type: String, required: true, unique: true, index: 1},
+    age: {type: Number, max: 188, min: 0}
+})
 
-// (async () => {
+// 该步会在db里生成一个名叫user的表
+const UserModel = mongoose.model('user', UserSchema)
+
+UserModel.create({
+    name: 'oxc',
+    age: 20
+})
 
 
-// })()
-//     .then(r => {
-
-//     })
-//     .catch(e => {
-
-//     })
-
+// 监听连接事件和连接失败事件
 db.on('open', () => {
     console.log('db connected!')
 })
@@ -38,4 +38,6 @@ db.on('open', () => {
 db.on('error', e => {
     console.log(e)
 })
+
+
 
